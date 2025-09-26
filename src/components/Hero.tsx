@@ -3,23 +3,27 @@ import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    <section
+      className="min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 bg-cover bg-center"
+      // Menggunakan gambar dari folder public sebagai background dengan warna fallback
+      style={{ backgroundImage: "url('/background.png')", backgroundColor: '#E0DDFE' }}
+    >
       <div className="max-w-4xl mx-auto text-center">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6"
+          className="text-5xl sm:text-6xl md:text-7xl font-bold text-black leading-tight mb-6"
         >
           Powerful Hosting for{' '}
-          <span className="text-purple-600">Bots, Minecraft & More</span>
+          <span className="text-black">Bots, Minecraft & More</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl sm:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed"
+          className="text-xl sm:text-2xl text-black mb-12 max-w-2xl mx-auto"
         >
           Fast, reliable, and affordable hosting with CodeX
         </motion.p>
@@ -28,24 +32,22 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
           className="inline-block"
         >
-          <button className="bg-white border border-gray-200 shadow-lg rounded-xl p-8 hover:shadow-xl transition-all duration-300 group">
-            <div className="flex items-center space-x-4">
-              <span className="text-2xl font-semibold text-gray-900">
-                Start Your Journey
-              </span>
-              <ArrowRight
-                size={28}
-                className="text-purple-600 group-hover:translate-x-2 transition-transform duration-300"
-              />
-            </div>
-            <p className="text-gray-600 mt-2">
-              Deploy in minutes, scale effortlessly
-            </p>
-          </button>
+          {/* Tombol dengan gaya offset shadow */}
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="bg-white text-black font-bold py-4 px-8 border-2 border-black rounded-lg shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[8px] active:translate-y-[8px] flex items-center group"
+          >
+            <span className="text-2xl font-semibold">
+              Start Your Journey
+            </span>
+            <ArrowRight
+              size={28}
+              className="ml-4 text-black group-hover:translate-x-2 transition-transform duration-300"
+            />
+          </motion.button>
         </motion.div>
       </div>
     </section>
