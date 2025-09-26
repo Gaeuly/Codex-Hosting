@@ -38,13 +38,15 @@ const Questions = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           {/* === Kolom Kiri: Ilustrasi === */}
+          {/* PERBAIKAN: Mengubah 'hidden lg:block' menjadi hanya 'lg:block' */}
           <motion.div 
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8 }}
-            className="hidden lg:block"
+            className="lg:block" // <-- Bug diperbaiki di sini
           >
+            {/* Tampilkan gambar di semua ukuran layar, tapi biarkan grid yang menyembunyikannya di mobile */}
             <img 
               src="/question.png" 
               alt="Minecraft character illustration" 
