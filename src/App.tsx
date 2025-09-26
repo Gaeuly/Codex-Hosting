@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import Locations from './components/Locations';
 import Pricing from './components/Pricing';
+import Questions from './components/Questions';
 import Reviews from './components/Reviews';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
@@ -14,6 +15,7 @@ const Home = () => (
     <Features />
     <Locations />
     <Pricing />
+    <Questions />
     <Reviews />
   </>
 );
