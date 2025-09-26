@@ -1,36 +1,47 @@
 import { motion } from 'framer-motion';
 import { Zap, Shield, Clock } from 'lucide-react';
 
-// A reusable component for the feature cards to keep the code clean.
+// Komponen kartu fitur yang sudah di-remake dengan efek glassmorphism dan hover 3D
 const FeatureCard = ({ icon, text, className, delay }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8, y: 50 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: delay }}
-      whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(168, 85, 247, 0.3)' }}
-      className={`absolute flex items-center gap-4 py-3 px-6 bg-gray-900/50 backdrop-blur-md border border-white/10 rounded-full shadow-lg ${className}`}
+      // Animasi awal saat kartu muncul
+      initial={{ opacity: 0, y: 40, scale: 0.9 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.5, delay: delay, type: 'spring', stiffness: 100 }}
+      
+      // Animasi saat cursor berada di atas kartu (hover)
+      whileHover={{ 
+        y: -12, 
+        scale: 1.05,
+        boxShadow: '0px 20px 40px rgba(139, 92, 246, 0.25)', 
+        borderColor: 'rgba(168, 85, 247, 0.7)' 
+      }}
+      
+      // Styling untuk efek kaca, border, dan bayangan
+      className={`group absolute flex items-center gap-4 py-4 px-7 bg-black/40 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl transition-all duration-300 cursor-pointer ${className}`}
     >
-      {icon}
-      <span className="font-semibold text-white text-base md:text-lg">{text}</span>
+        <div className="text-purple-400 transition-colors duration-300 group-hover:text-purple-300">
+            {icon}
+        </div>
+        <span className="font-semibold text-white text-base md:text-lg">{text}</span>
     </motion.div>
   );
 };
 
 export default function Hero() {
   return (
-    // Main section with the specified background image.
-    // NOTE: Make sure to place your image at `public/background.png` for this to work.
+    // Section utama, padding-nya sudah disesuaikan agar tidak terlalu jauh dengan section berikutnya
     <section 
-      className="relative w-full min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat text-white overflow-hidden py-24 px-4 sm:px-6 lg:px-8"
+      className="relative w-full flex items-center justify-center bg-cover bg-center bg-no-repeat text-white overflow-hidden pt-40 pb-24 px-4 sm:px-6 lg:px-8"
       style={{ backgroundImage: 'url(/background.png)' }}
     >
-      {/* A dark overlay to ensure the text is readable against the background image. */}
-      <div aria-hidden="true" className="absolute inset-0 z-0 bg-black/60 backdrop-blur-sm"></div>
+      {/* Lapisan overlay gelap agar teks mudah dibaca */}
+      <div aria-hidden="true" className="absolute inset-0 z-0 bg-black/60"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
         
-        {/* Left Column: Introduction Text */}
+        {/* Kolom Kiri: Teks Perkenalan */}
         <div className="text-center lg:text-left">
           <motion.h1
             initial={{ opacity: 0, x: -50 }}
@@ -74,22 +85,22 @@ export default function Hero() {
           </motion.div>
         </div>
         
-        {/* Right Column: Zig-zag Feature Cards */}
+        {/* Kolom Kanan: Kartu Fitur Zigzag */}
         <div className="relative h-96 w-full hidden lg:flex items-center justify-center">
             <FeatureCard 
-                icon={<Zap className="w-7 h-7 text-purple-400" />}
+                icon={<Zap className="w-7 h-7" />}
                 text="99.9% Uptime"
                 className="top-8 right-0"
                 delay={0.6}
             />
             <FeatureCard 
-                icon={<Shield className="w-7 h-7 text-purple-400" />}
+                icon={<Shield className="w-7 h-7" />}
                 text="DDoS Protection"
                 className="top-1/2 left-0 -translate-y-1/2"
                 delay={0.8}
             />
             <FeatureCard 
-                icon={<Clock className="w-7 h-7 text-purple-400" />}
+                icon={<Clock className="w-7 h-7" />}
                 text="24/7 Support"
                 className="bottom-8 right-0"
                 delay={1.0}
