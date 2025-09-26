@@ -118,7 +118,8 @@ const Pricing = () => {
         </motion.div>
 
         {/* === Kartu Harga === */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        {/* Perubahan ada di baris ini: tambahkan md:grid-cols-2 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
           {pricingPlans.map((plan, index) => (
             <motion.div
               key={plan.title}
@@ -126,7 +127,8 @@ const Pricing = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl overflow-hidden group hover:border-blue-500 transition-all duration-300 ${plan.title === 'Bot Hosting' ? 'lg:col-start-1 lg:row-start-1' : ''} ${plan.title === 'Game Servers' ? 'lg:col-start-2 lg:row-start-1' : ''} ${plan.title === 'VPS Hosting' ? 'lg:col-start-3 lg:row-start-1' : ''}`}
+              // Kita hapus logika col-start/row-start agar grid lebih fleksibel
+              className={`relative bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl overflow-hidden group hover:border-blue-500 transition-all duration-300`}
             >
               {plan.popular && (
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full">
