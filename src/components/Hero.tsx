@@ -1,36 +1,30 @@
 import { motion } from 'framer-motion';
 import { Zap, Shield, Clock } from 'lucide-react';
 
-// Kartu fitur dengan gaya baru: warna solid dan offset shadow
+// Komponen kartu fitur yang sudah di-remake dengan efek glassmorphism dan hover 3D
 const FeatureCard = ({ icon, text, className, delay }) => {
   return (
     <motion.div
-      // Animasi awal
+      // Animasi awal saat kartu muncul
       initial={{ opacity: 0, y: 40, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.5, delay: delay, type: 'spring', stiffness: 100 }}
       
-      // Efek saat di-hover
+      // Animasi saat cursor berada di atas kartu (hover)
       whileHover={{ 
-        y: -6, // Geser sedikit ke atas
-        x: 6,  // Geser sedikit ke kanan
-        // Ubah shadow saat di-hover agar lebih dinamis
-        boxShadow: '8px 8px 0px #A855F7', 
+        y: -12, 
+        scale: 1.05,
+        boxShadow: '0px 20px 40px rgba(139, 92, 246, 0.25)', 
+        borderColor: 'rgba(168, 85, 247, 0.7)' 
       }}
       
-      // Styling utama kartu
-      className={`group absolute flex items-center gap-4 py-4 px-7 
-                 bg-[#1A103A] border-2 border-white 
-                 rounded-2xl cursor-pointer
-                 transition-all duration-300
-                 // Shadow abu-abu sebagai offset awal
-                 shadow-[6px_6px_0px_#D1D5DB]`}
-      style={{
-        // Menambahkan properti transisi custom untuk shadow
-        transitionProperty: 'transform, box-shadow'
-      }}
+      // [INI BAGIAN YANG DIGANTI]
+      // Styling untuk efek kaca, border, dan bayangan
+      // Saya ganti `bg-black/40` menjadi `bg-slate-800/40` agar ada sedikit warna kebiruan
+      // Kamu bisa ganti `slate-800` dengan warna lain seperti `purple-900` atau `violet-800`
+      className={`group absolute flex items-center gap-4 py-4 px-7 bg-slate-800/40 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl transition-all duration-300 cursor-pointer ${className}`}
     >
-        <div className="text-purple-400">
+        <div className="text-purple-400 transition-colors duration-300 group-hover:text-purple-300">
             {icon}
         </div>
         <span className="font-semibold text-white text-base md:text-lg">{text}</span>
@@ -40,14 +34,17 @@ const FeatureCard = ({ icon, text, className, delay }) => {
 
 export default function Hero() {
   return (
+    // Section utama, padding-nya sudah disesuaikan agar tidak terlalu jauh dengan section berikutnya
     <section 
       className="relative w-full flex items-center justify-center bg-cover bg-center bg-no-repeat text-white overflow-hidden pt-40 pb-24 px-4 sm:px-6 lg:px-8"
       style={{ backgroundImage: 'url(/background.png)' }}
     >
+      {/* Lapisan overlay gelap agar teks mudah dibaca */}
       <div aria-hidden="true" className="absolute inset-0 z-0 bg-black/60"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
         
+        {/* Kolom Kiri: Teks Perkenalan */}
         <div className="text-center lg:text-left">
           <motion.h1
             initial={{ opacity: 0, x: -50 }}
@@ -91,6 +88,7 @@ export default function Hero() {
           </motion.div>
         </div>
         
+        {/* Kolom Kanan: Kartu Fitur Zigzag */}
         <div className="relative h-96 w-full hidden lg:flex items-center justify-center">
             <FeatureCard 
                 icon={<Zap className="w-7 h-7" />}
@@ -114,4 +112,4 @@ export default function Hero() {
       </div>
     </section>
   );
-}
+            }
