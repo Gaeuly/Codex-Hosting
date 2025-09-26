@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import { Globe } from 'lucide-react';
 import USFlag from '../icons/flags/USFlag';
 import NetherlandsFlag from '../icons/flags/NetherlandsFlag';
+// Kita tidak perlu lagi import Map.tsx
 
-// Data diperbarui dengan Netherlands
 const serverLocations = [
   {
     country: 'United States',
@@ -69,9 +69,16 @@ const Locations = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="relative w-full max-w-5xl mx-auto aspect-[2/1] bg-center bg-no-repeat"
-          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M851.3 125.4c-3.3-1.2-6.9-2.1-10.6-2.6-3.7-.5-7.5-.8-11.3-.8-13.8 0-27.2 2.7-39.7 7.8-12.5 5.2-24 12.8-34.1 22.4-10.1 9.6-18.6 21-25.2 33.6-6.6 12.6-11.2 26.2-13.4 40.2-.9 5.8-1.4 11.7-1.4 17.6 0 16 3.6 31.8 10.5 46.5 6.9 14.7 16.5 28 28.5 39.2 12 11.2 26.1 20 41.8 25.8 15.7 5.8 32.6 8.5 50.2 7.7 17.6-.8 35.1-5.2 51.5-12.9 16.4-7.7 31.5-18.5 44.5-31.9 13-13.4 23.6-29.1 31.4-46.6 7.8-17.5 12.6-36.5 14-56.2.5-7.1.8-14.3.8-21.5 0-21.3-4.9-42.3-14.3-61.8-9.4-19.5-22.9-37-40-51.5-17.1-14.5-37.3-25.6-59.5-32.6-22.2-7-45.8-9.8-69.3-8.1-11.6.8-23.1 2.5-34.3 5z' fill='%231a202c'/%3E%3C/svg%3E")` }}
+          className="relative w-full max-w-5xl mx-auto aspect-[2/1]"
         >
+          {/* Menggunakan tag <img> untuk memanggil SVG dari folder public */}
+          <img 
+            src="/map.svg" 
+            alt="Global Server Locations Map" 
+            className="absolute top-0 left-0 w-full h-full object-contain" 
+          />
+
+          {/* Titik Lokasi (tetap sama) */}
           {serverLocations.map((loc) => (
             <div
               key={loc.country}
