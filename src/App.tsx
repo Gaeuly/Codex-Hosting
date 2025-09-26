@@ -7,25 +7,19 @@ import Reviews from './components/Reviews';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
 
-function Home() {
-  return (
-    <>
-      <Hero />
-      <About />
-      <Features />
-      <Reviews />
-    </>
-  );
-}
+const Home = () => (
+  <>
+    <Hero />
+    <About />
+    <Features />
+    <Reviews />
+  </>
+);
 
 function App() {
   return (
     <Router>
-      {/* MASALAHNYA DI SINI:
-        Background gradient sebelumnya menimpa background image di Hero.tsx.
-        Sekarang diubah menjadi background hitam polos agar tidak konflik.
-      */}
-      <div className="min-h-screen bg-black">
+      <div className="min-h-screen bg-white">
         <Navbar />
         <main>
           <Routes>
