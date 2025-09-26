@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import Locations from './components/Locations';
+import Pricing from './components/Pricing';
 import Reviews from './components/Reviews';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
@@ -12,6 +13,7 @@ const Home = () => (
     <Hero />
     <Features />
     <Locations />
+    <Pricing />
     <Reviews />
   </>
 );
