@@ -88,9 +88,12 @@ const Hero = () => {
         }
       `}</style>
 
-      <section className="flex flex-col items-center justify-center min-h-screen pt-24 px-4 sm:px-6 lg:px-8">
+      {/* MENGUBAH min-h-screen menjadi padding vertikal (py) yang lebih sesuai.
+        pt-24 (padding-top) untuk memberi ruang dari navbar.
+        pb-16 (padding-bottom) untuk memberi jarak ke section berikutnya.
+      */}
+      <section className="flex flex-col items-center justify-center pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-7xl">
-          {/* ... (Konten utama Hero: Teks animasi dan kartu fitur, tidak ada perubahan) ... */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
