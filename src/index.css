@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    /* Atur gambar background dari folder public */
+    background-image: url('/background.png');
+    
+    /* Pastikan gambar menutupi seluruh layar */
+    background-size: cover;
+    
+    /* Posisikan gambar di tengah */
+    background-position: center;
+    
+    /* Buat background 'fixed' agar tidak ikut scroll */
+    background-attachment: fixed;
+    
+    /* Hindari gambar berulang */
+    background-repeat: no-repeat;
+    
+    /* Beri warna dasar jika gambar gagal dimuat */
+    background-color: #0c0a18; /* Warna ungu gelap */
+  }
+}

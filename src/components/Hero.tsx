@@ -6,8 +6,6 @@ const Hero = () => {
     // 1. Mengurangi padding vertikal dan menghapus min-h-screen agar tidak terlalu jauh
     <section
       className="flex items-center justify-center py-32 sm:py-40 px-4 sm:px-6 lg:px-8 bg-cover bg-center"
-      // Menghapus warna background terang, mengandalkan gambar dari /background.png
-      style={{ backgroundImage: "url('/background.png')" }}
     >
       <div className="max-w-4xl mx-auto text-center">
         <motion.h1
