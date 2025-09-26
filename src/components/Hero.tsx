@@ -3,27 +3,30 @@ import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   return (
+    // 1. Mengurangi padding vertikal dan menghapus min-h-screen agar tidak terlalu jauh
     <section
-      className="min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 bg-cover bg-center"
-      // Menggunakan gambar dari folder public sebagai background dengan warna fallback
-      style={{ backgroundImage: "url('/background.png')", backgroundColor: '#E0DDFE' }}
+      className="flex items-center justify-center py-32 sm:py-40 px-4 sm:px-6 lg:px-8 bg-cover bg-center"
+      // Menghapus warna background terang, mengandalkan gambar dari /background.png
+      style={{ backgroundImage: "url('/background.png')" }}
     >
       <div className="max-w-4xl mx-auto text-center">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl sm:text-6xl md:text-7xl font-bold text-black leading-tight mb-6"
+          // 2. Mengubah warna teks menjadi putih agar kontras dengan background gelap
+          className="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight mb-6"
         >
           Powerful Hosting for{' '}
-          <span className="text-black">Bots, Minecraft & More</span>
+          <span className="text-white">Bots, Minecraft & More</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl sm:text-2xl text-black mb-12 max-w-2xl mx-auto"
+          // Mengubah warna sub-teks menjadi abu-abu terang
+          className="text-xl sm:text-2xl text-gray-200 mb-12 max-w-2xl mx-auto"
         >
           Fast, reliable, and affordable hosting with CodeX
         </motion.p>
@@ -34,11 +37,11 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="inline-block"
         >
-          {/* Tombol dengan gaya offset shadow */}
+          {/* 3. Tombol tetap putih untuk kontras, shadow disesuaikan */}
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-white text-black font-bold py-4 px-8 border-2 border-black rounded-lg shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[8px] active:translate-y-[8px] flex items-center group"
+            className="bg-white text-black font-bold py-4 px-8 border-2 border-black rounded-lg shadow-[6px_6px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[6px] active:translate-y-[6px] flex items-center group"
           >
             <span className="text-2xl font-semibold">
               Start Your Journey
