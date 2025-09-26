@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   return (
-    // 1. Mengurangi padding vertikal dan menghapus min-h-screen agar tidak terlalu jauh
+    // Menghapus style inline untuk background, karena sekarang diatur global di index.css
     <section
       className="flex items-center justify-center py-32 sm:py-40 px-4 sm:px-6 lg:px-8 bg-cover bg-center"
     >
@@ -12,7 +12,6 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          // 2. Mengubah warna teks menjadi putih agar kontras dengan background gelap
           className="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight mb-6"
         >
           Powerful Hosting for{' '}
@@ -23,7 +22,6 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          // Mengubah warna sub-teks menjadi abu-abu terang
           className="text-xl sm:text-2xl text-gray-200 mb-12 max-w-2xl mx-auto"
         >
           Fast, reliable, and affordable hosting with CodeX
@@ -35,7 +33,6 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="inline-block"
         >
-          {/* 3. Tombol tetap putih untuk kontras, shadow disesuaikan */}
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
