@@ -39,12 +39,12 @@ const Footer = () => {
   return (
     <footer className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* PERBAIKAN: Mengubah grid layout untuk tablet */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+        {/* PERBAIKAN: Mengatur grid untuk mobile, tablet, dan desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           
           {/* === Kolom 1: Logo, Deskripsi, dan Sosial Media === */}
-          {/* Tetap span 2 di 'sm' agar tidak aneh, tapi jadi 1 di 'lg' */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          {/* Di tablet (md), kolom ini akan mengambil lebar penuh (2 kolom) */}
+          <div className="md:col-span-2 lg:col-span-1">
             <a href="#" className="mb-4 inline-block">
               <img src="/codex.png" alt="CodeX Logo" className="h-10 w-auto" />
             </a>
