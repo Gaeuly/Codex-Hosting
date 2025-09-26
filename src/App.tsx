@@ -21,12 +21,18 @@ function Home() {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
+      {/* MASALAHNYA DI SINI:
+        Background gradient sebelumnya menimpa background image di Hero.tsx.
+        Sekarang diubah menjadi background hitam polos agar tidak konflik.
+      */}
+      <div className="min-h-screen bg-black">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
         <Footer />
       </div>
     </Router>
