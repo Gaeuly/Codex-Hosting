@@ -1,83 +1,98 @@
 import { motion } from 'framer-motion';
 import { Zap, Shield, Clock } from 'lucide-react';
 
+// Komponen untuk kartu fitur agar lebih rapi
+const FeatureCard = ({ icon, text, className, delay }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8, y: 50 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: delay }}
+      whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(168, 85, 247, 0.3)' }}
+      className={`absolute flex items-center gap-4 py-3 px-6 bg-gray-500/10 backdrop-blur-md border border-white/10 rounded-full shadow-lg ${className}`}
+    >
+      {icon}
+      <span className="font-semibold text-white text-base md:text-lg">{text}</span>
+    </motion.div>
+  );
+};
+
 export default function Hero() {
   return (
-    <section className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center">
+    // Section utama dengan background gelap dan efek gradasi ungu
+    <section className="relative w-full min-h-screen flex items-center justify-center bg-[#0A0715] text-white overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
+      {/* Efek cahaya gradasi di background */}
+      <div aria-hidden="true" className="absolute inset-0 z-0">
+        <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-purple-900/50 to-transparent blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-1/3 h-full bg-gradient-to-l from-pink-900/40 to-transparent blur-3xl"></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+        
+        {/* Kolom Kiri: Perkenalan */}
+        <div className="text-center lg:text-left">
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6"
           >
-            Powerful Hosting for{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-              Bots, Minecraft & More
-            </span>
+            Hosting <span className="text-purple-400">CodeX</span> Premier{' '}
+            <span className="block">All-in-One Anda</span>
           </motion.h1>
           
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
+            className="text-lg sm:text-xl text-gray-300 mb-10 max-w-xl mx-auto lg:mx-0"
           >
-            Fast, reliable, and affordable hosting with CodeX
+            Temukan host terdepan untuk manajemen dan performa. Dibuat untuk meningkatkan pengalaman komunitas Anda, menyederhanakan manajemen server, dan memberikan Anda akses ke sumber daya premium untuk setiap kebutuhan.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center"
           >
             <motion.button
-              whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(139, 92, 246, 0.3)' }}
+              whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(139, 92, 246, 0.4)' }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-colors shadow-lg"
+              className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg"
             >
-              Start Hosting Now
+              Mulai Hosting
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, backgroundColor: 'rgba(168, 85, 247, 0.1)' }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 border-purple-400 text-purple-400 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-purple-400 hover:text-white transition-colors"
+              className="w-full sm:w-auto border-2 border-purple-400 text-purple-400 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-purple-400/10 transition-colors duration-300"
             >
-              View Plans
+              Lihat Paket
             </motion.button>
           </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto"
-          >
-            <div className="flex flex-col items-center">
-              <div className="bg-white/10 backdrop-blur-md rounded-full p-3 mb-3">
-                <Zap className="w-8 h-8 text-purple-400" />
-              </div>
-              <p className="text-2xl font-bold text-white">99.9%</p>
-              <p className="text-gray-400">Uptime</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="bg-white/10 backdrop-blur-md rounded-full p-3 mb-3">
-                <Shield className="w-8 h-8 text-purple-400" />
-              </div>
-              <p className="text-2xl font-bold text-white">DDoS</p>
-              <p className="text-gray-400">Protection</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="bg-white/10 backdrop-blur-md rounded-full p-3 mb-3">
-                <Clock className="w-8 h-8 text-purple-400" />
-              </div>
-              <p className="text-2xl font-bold text-white">24/7</p>
-              <p className="text-gray-400">Support</p>
-            </div>
-          </motion.div>
+        </div>
+        
+        {/* Kolom Kanan: Kartu Fitur Zigzag */}
+        <div className="relative h-96 w-full hidden lg:flex items-center justify-center">
+            <FeatureCard 
+                icon={<Zap className="w-7 h-7 text-purple-400" />}
+                text="99.9% Uptime"
+                className="top-8 right-0"
+                delay={0.6}
+            />
+            <FeatureCard 
+                icon={<Shield className="w-7 h-7 text-purple-400" />}
+                text="Proteksi DDoS"
+                className="top-1/2 left-0 -translate-y-1/2"
+                delay={0.8}
+            />
+            <FeatureCard 
+                icon={<Clock className="w-7 h-7 text-purple-400" />}
+                text="Dukungan 24/7"
+                className="bottom-8 right-0"
+                delay={1.0}
+            />
         </div>
       </div>
     </section>
