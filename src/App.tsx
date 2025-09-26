@@ -7,6 +7,7 @@ import Pricing from './components/Pricing';
 import Questions from './components/Questions';
 import Experience from './components/Experience';
 import Reviews from './components/Reviews';
+import Cta from './components/Cta';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
 
@@ -19,6 +20,7 @@ const Home = () => (
     <Questions />
     <Experience />
     <Reviews />
+    <Cta />
   </>
 );
 
