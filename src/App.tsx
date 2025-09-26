@@ -19,7 +19,10 @@ const Home = () => (
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-white">
+      {/* MASALAH ADA DI SINI: Kelas 'bg-white' dihapus dari div ini.
+        Sekarang, background dari index.css (body) akan bisa terlihat.
+      */}
+      <div className="min-h-screen">
         <Navbar />
         <main>
           <Routes>
