@@ -35,18 +35,18 @@ const Questions = () => {
   return (
     <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* PERBAIKAN: Mengubah lg:grid-cols-2 menjadi md:grid-cols-2 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           
           {/* === Kolom Kiri: Ilustrasi === */}
-          {/* PERBAIKAN: Mengubah 'hidden lg:block' menjadi hanya 'lg:block' */}
           <motion.div 
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8 }}
-            className="lg:block" // <-- Bug diperbaiki di sini
+            // Sembunyikan gambar di layar 'sm' ke bawah, tampilkan sebagai 'block' di 'md' ke atas
+            className="hidden md:block" 
           >
-            {/* Tampilkan gambar di semua ukuran layar, tapi biarkan grid yang menyembunyikannya di mobile */}
             <img 
               src="/question.png" 
               alt="Minecraft character illustration" 
