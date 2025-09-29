@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Cpu, Zap, HardDrive, Wifi, ShieldCheck, LifeBuoy, ChevronDown } from 'lucide-react';
+import nodejsImg from "@/assets/nodejs.jpg";
 
 // Data mata uang dan kurs konversi
 const currencies = {
@@ -198,14 +199,20 @@ const DiscordBotPricing = () => {
                 </div>
               )}
               <div className="p-6 flex-grow">
-                <div className="flex items-start gap-4 mb-4">
-                  {/* PERUBAHAN: Gambar langsung dari assets */}
-                  <img src="/src/assets/nodejs.jpg" alt="Node.js Icon" className="w-16 h-16 rounded-lg object-cover" onError={(e) => { e.currentTarget.src = 'https://placehold.co/64x64/1F2937/FFFFFF?text=JS' }} />
-                  <div>
-                    <h3 className="text-xl font-bold text-white">{plan.name}</h3>
-                    <p className="text-sm text-gray-400">{plan.type}</p>
-                  </div>
-                </div>
+  <div className="flex items-start gap-4 mb-4">
+    <img
+      src={nodejsImg}
+      alt="Node.js Icon"
+      className="w-16 h-16 rounded-lg object-cover"
+      onError={(e) => {
+        e.currentTarget.src = "https://placehold.co/64x64/1F2937/FFFFFF?text=JS";
+      }}
+    />
+    <div>
+      <h3 className="text-xl font-bold text-white">{plan.name}</h3>
+      <p className="text-sm text-gray-400">{plan.type}</p>
+    </div>
+  </div>
 
                 <div className="grid grid-cols-2 gap-x-6 gap-y-4 my-6 text-sm">
                     <div className="flex items-center gap-2 text-gray-300"><Cpu size={16} className="text-gray-500"/> <span>{plan.cpu}</span></div>
