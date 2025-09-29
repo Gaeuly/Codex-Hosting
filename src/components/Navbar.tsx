@@ -1,32 +1,23 @@
 import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Bot, Server, Music, Globe, Info, HelpingHand, FileText, Shield, BarChart } from 'lucide-react';
+import { Menu, X, ChevronDown, Bot, Server, Globe, Info, HelpingHand, FileText, Shield, BarChart, Music } from 'lucide-react';
 
-// PERUBAHAN: href diupdate ke route yang sesuai
+// --- Data untuk dropdown menu dengan link yang benar ---
 const serviceItems = [
   { icon: Bot, name: 'Discord Bot', href: '/discord' },
   { icon: Server, name: 'Minecraft Server', href: '/minecraft' },
-  { icon: Music, name: 'Lavalink Hosting', href: '#' }, // Belum ada halaman
   { icon: Globe, name: 'VPS', href: '/vps' },
+  { icon: Music, name: 'Lavalink Hosting', href: '#' }, // Belum dibuat, biarkan '#'
 ];
 
 const moreItems = [
-  { icon: Info, name: 'About Us', href: '#about' },
-  { icon: HelpingHand, name: 'Support', href: '#' },
-  { icon: FileText, name: 'TOS', href: '#' },
-  { icon: Shield, name: 'Privacy Policy', href: '#' },
-  { icon: BarChart, name: 'Status Page', href: '#' },
+  { icon: Info, name: 'About Us', href: '/about' },
+  { icon: HelpingHand, name: 'Support', href: '/support' },
+  { icon: FileText, name: 'TOS', href: '/tos' },
+  { icon: Shield, name: 'Privacy Policy', href: '/privacy' },
+  { icon: BarChart, name: 'Status Page', href: '/status' },
 ];
-
-// PERUBAHAN: Komponen item dropdown sekarang menggunakan <Link>
-const DropdownItem = ({ icon: Icon, name, href }: { icon: React.ElementType, name: string, href: string }) => (
-  <Link to={href} className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-800 transition-colors text-gray-300 hover:text-white">
-    <Icon size={18} />
-    <span className="text-sm font-medium">{name}</span>
-  </Link>
-);
-
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -46,6 +37,12 @@ const Navbar = () => {
   const toggleMobileDropdown = (menu: string) => {
     setMobileDropdown(mobileDropdown === menu ? null : menu);
   };
+  
+  // Fungsi untuk menutup semua menu
+  const closeAllMenus = () => {
+      setIsMobileMenuOpen(false);
+      setMobileDropdown(null);
+  }
 
   return (
     <header className="absolute top-0 left-0 right-0 z-50 py-4 w-full">
@@ -109,7 +106,7 @@ const Navbar = () => {
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/80 backdrop-blur-xl md:hidden z-40"
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={closeAllMenus}
           >
             <motion.div
               initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -50 }}
@@ -119,7 +116,7 @@ const Navbar = () => {
             >
               <h2 className="text-white font-bold text-xl mb-4">Menu</h2>
                <div className="flex flex-col space-y-2">
-                 <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:bg-gray-800 p-3 rounded-lg transition-colors">Home</Link>
+                 <Link to="/" onClick={closeAllMenus} className="text-gray-300 hover:bg-gray-800 p-3 rounded-lg transition-colors">Home</Link>
                  
                  <div className="border-t border-b border-gray-700">
                     <button onClick={() => toggleMobileDropdown('services')} className="w-full flex justify-between items-center p-3 text-gray-300 hover:bg-gray-800 rounded-lg transition-colors">
@@ -128,8 +125,7 @@ const Navbar = () => {
                     </button>
                     {mobileDropdown === 'services' && (
                       <div className="pl-4 pb-2 mt-1 space-y-1">
-                        {/* PERUBAHAN: Mobile menu juga menggunakan <Link> */}
-                        {serviceItems.map(item => <Link key={item.name} to={item.href} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 py-2 text-gray-400 hover:text-white"><item.icon size={18} />{item.name}</Link>)}
+                        {serviceItems.map(item => <Link key={item.name} to={item.href} onClick={closeAllMenus} className="flex items-center gap-3 py-2 text-gray-400 hover:text-white"><item.icon size={18} />{item.name}</Link>)}
                       </div>
                     )}
                  </div>
@@ -141,11 +137,11 @@ const Navbar = () => {
                     </button>
                     {mobileDropdown === 'more' && (
                       <div className="pl-4 pb-2 mt-1 space-y-1">
-                        {moreItems.map(item => <a key={item.name} href={item.href} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 py-2 text-gray-400 hover:text-white"><item.icon size={18} />{item.name}</a>)}
+                        {moreItems.map(item => <Link key={item.name} to={item.href} onClick={closeAllMenus} className="flex items-center gap-3 py-2 text-gray-400 hover:text-white"><item.icon size={18} />{item.name}</Link>)}
                       </div>
                     )}
                  </div>
-                 <a href="#" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:bg-gray-800 p-3 rounded-lg transition-colors">Dashboard</a>
+                 <a href="#" onClick={closeAllMenus} className="text-gray-300 hover:bg-gray-800 p-3 rounded-lg transition-colors">Dashboard</a>
                </div>
             </motion.div>
           </motion.div>
@@ -154,5 +150,13 @@ const Navbar = () => {
     </header>
   );
 };
+
+// PERUBAHAN: Menggunakan <Link> untuk navigasi internal
+const DropdownItem = ({ icon: Icon, name, href }: { icon: React.ElementType, name: string, href: string }) => (
+  <Link to={href} className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-800 transition-colors text-gray-300 hover:text-white">
+    <Icon size={18} />
+    <span className="text-sm font-medium">{name}</span>
+  </Link>
+);
 
 export default Navbar;
