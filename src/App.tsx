@@ -10,7 +10,6 @@ import Reviews from './components/Reviews';
 import Cta from './components/Cta';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
-// Import halaman pricing Discord Bot yang baru
 import DiscordBotPricing from './pages/discord';
 
 const Home = () => (
@@ -29,12 +28,14 @@ const Home = () => (
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-900">
+      {/* PERUBAHAN: Kelas 'bg-gray-900' dihapus dari div ini.
+        Ini akan membuat background dari CSS global (misal: index.css yang memakai background.png) bisa terlihat.
+      */}
+      <div className="min-h-screen">
         <Navbar />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* Tambahkan route baru untuk halaman Discord */}
             <Route path="/discord" element={<DiscordBotPricing />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
