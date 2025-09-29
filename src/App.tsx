@@ -10,6 +10,8 @@ import Reviews from './components/Reviews';
 import Cta from './components/Cta';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
+// Import halaman pricing Discord Bot yang baru
+import DiscordBotPricing from './pages/discord';
 
 const Home = () => (
   <>
@@ -27,14 +29,13 @@ const Home = () => (
 function App() {
   return (
     <Router>
-      {/* MASALAH ADA DI SINI: Kelas 'bg-white' dihapus dari div ini.
-        Sekarang, background dari index.css (body) akan bisa terlihat.
-      */}
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-gray-900">
         <Navbar />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
+            {/* Tambahkan route baru untuk halaman Discord */}
+            <Route path="/discord" element={<DiscordBotPricing />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

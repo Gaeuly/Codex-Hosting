@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, Bot, Server, Music, Globe, Info, HelpingHand, FileText, Shield, BarChart } from 'lucide-react';
 
 // --- Data untuk dropdown menu ---
+// PERUBAHAN: Arahkan 'Discord Bot' ke halaman '/discord'
 const serviceItems = [
-  { icon: Bot, name: 'Discord Bot', href: '#' },
+  { icon: Bot, name: 'Discord Bot', href: '/discord' },
   { icon: Server, name: 'Minecraft Server', href: '#' },
   { icon: Music, name: 'Lavalink Hosting', href: '#' },
   { icon: Globe, name: 'VPS', href: '#' },
@@ -39,7 +40,6 @@ const Navbar = () => {
   };
 
   return (
-    // PERUBAHAN: Mengganti 'sticky' menjadi 'absolute' dan 'w-full'
     <header className="absolute top-0 left-0 right-0 z-50 py-4 w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -51,7 +51,7 @@ const Navbar = () => {
           {/* === Desktop Menu (Card di tengah dengan Dropdown) === */}
           <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
             <div className="flex items-center space-x-2 bg-gray-800/50 backdrop-blur-md border border-gray-700 rounded-full px-4 py-2">
-              <a href="/" className="text-gray-300 hover:text-white transition-colors text-sm font-medium px-3 py-1 rounded-full">Home</a>
+              <Link to="/" className="text-gray-300 hover:text-white transition-colors text-sm font-medium px-3 py-1 rounded-full">Home</Link>
               
               {/* Dropdown Services */}
               <div onMouseEnter={() => handleMouseEnter('services')} onMouseLeave={handleMouseLeave} className="relative">
@@ -117,7 +117,7 @@ const Navbar = () => {
             >
               <h2 className="text-white font-bold text-xl mb-4">Menu</h2>
                <div className="flex flex-col space-y-2">
-                 <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:bg-gray-800 p-3 rounded-lg transition-colors">Home</a>
+                 <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:bg-gray-800 p-3 rounded-lg transition-colors">Home</Link>
                  
                  {/* Dropdown Services Mobile */}
                  <div className="border-t border-b border-gray-700">
@@ -127,7 +127,7 @@ const Navbar = () => {
                     </button>
                     {mobileDropdown === 'services' && (
                       <div className="pl-4 pb-2 mt-1 space-y-1">
-                        {serviceItems.map(item => <a key={item.name} href={item.href} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 py-2 text-gray-400 hover:text-white"><item.icon size={18} />{item.name}</a>)}
+                        {serviceItems.map(item => <Link key={item.name} to={item.href} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 py-2 text-gray-400 hover:text-white"><item.icon size={18} />{item.name}</Link>)}
                       </div>
                     )}
                  </div>
@@ -155,12 +155,12 @@ const Navbar = () => {
   );
 };
 
-// Komponen kecil untuk item dropdown desktop
+// PERUBAHAN: Ganti komponen `a` menjadi `Link` untuk navigasi SPA
 const DropdownItem = ({ icon: Icon, name, href }: { icon: React.ElementType, name: string, href: string }) => (
-  <a href={href} className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-800 transition-colors text-gray-300 hover:text-white">
+  <Link to={href} className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-800 transition-colors text-gray-300 hover:text-white">
     <Icon size={18} />
     <span className="text-sm font-medium">{name}</span>
-  </a>
+  </Link>
 );
 
 export default Navbar;
