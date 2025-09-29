@@ -1,5 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Import Komponen Utama
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import NotFound from './components/NotFound';
+
+// Import Komponen Halaman Home
 import Hero from './components/Hero';
 import Features from './components/Features';
 import Locations from './components/Locations';
@@ -8,10 +14,14 @@ import Questions from './components/Questions';
 import Experience from './components/Experience';
 import Reviews from './components/Reviews';
 import Cta from './components/Cta';
-import Footer from './components/Footer';
-import NotFound from './components/NotFound';
-import DiscordBotPricing from './pages/discord';
 
+// Import Halaman-Halaman Baru
+import DiscordBotPricing from './pages/discord';
+import MinecraftPricing from './pages/minecraft';
+import VpsPricing from './pages/vps';
+
+
+// Komponen untuk merender semua bagian dari Halaman Home
 const Home = () => (
   <>
     <Hero />
@@ -28,15 +38,15 @@ const Home = () => (
 function App() {
   return (
     <Router>
-      {/* PERUBAHAN: Kelas 'bg-gray-900' dihapus dari div ini.
-        Ini akan membuat background dari CSS global (misal: index.css yang memakai background.png) bisa terlihat.
-      */}
       <div className="min-h-screen">
         <Navbar />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
+            {/* PERUBAHAN: Menambahkan route untuk setiap halaman baru */}
             <Route path="/discord" element={<DiscordBotPricing />} />
+            <Route path="/minecraft" element={<MinecraftPricing />} />
+            <Route path="/vps" element={<VpsPricing />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
