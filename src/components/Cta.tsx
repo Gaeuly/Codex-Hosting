@@ -37,7 +37,7 @@ const Cta = () => {
             {/* === Kolom Kanan: Gambar/Tombol === */}
             <div className="flex justify-center md:justify-end">
                 {/* Kita gunakan <a> tag agar bisa diklik dan mengarah ke link Discord */}
-              <a href="https://discord.gg/your-invite-code" target="_blank" rel="noopener noreferrer">
+              <a href="https://discord.gg/FnEe7xcYZQ" target="_blank" rel="noopener noreferrer">
                 <motion.img
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: 'spring', stiffness: 300 }}
